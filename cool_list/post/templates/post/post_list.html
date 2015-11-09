@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{#    <ul>#}
+{#        {% for listpost in posts %}#}
+{#        <li>#}
+{#            {{ post.title }}#}
+{#        </li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+<h1>California!</h1>
+<ul>
+    {% for city in location_list %}
+    <li>
+    {{ city.city }}
+    </li>
+    {% endfor %}
+</ul>
+
+<h1>hot pockets</h1>
+<ul>
+    {% for state in location_list %}
+    <li>
+    {{ state.state }}
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

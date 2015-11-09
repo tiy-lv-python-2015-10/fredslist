@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User name</title>
+</head>
+<body>
+<h2>
+    login to Coollist
+</h2>
+<form method="post" action="{% url 'login' %}">
+    {{ form.as_p }}
+</form>
+</body>
+</html>
