@@ -1,0 +1,44 @@
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=150)
+    description = models.TextField(max_length=5000)
+    location = models.CharField(max_length=40)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    contact_name = models.CharField(max_length=35, null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2,
+                                null=True, blank=True)
+    specific_location = models.CharField(max_length=75, null=True, blank=True)
+    manufacturer = models.CharField(max_length=50, null=True, blank=True)
+    model_name = models.CharField(max_length=50, null=True, blank=True)
+    serial_num = models.CharField(max_length=50, null=True, blank=True)
+    dimensions = models.CharField(max_length=50, null=True, blank=True)
+    # contact_by = CharField(required=False,
+    #                                  widget=forms.CheckboxSelectMultiple,
+    #                                  choices=CONTACT_CHOICES)
+    condition = models.CharField(choices=CONDITION_CHOICES, null=True,
+                                 max_length=20)
+    by_phone = models.NullBooleanField()
+    by_text = models.NullBooleanField()
+
+    user
+    title
+    description
+    location
+    phone_number
+    contace_name
+    price
+    specific_location
+    manufacturer
+    model_name
+    serial_num
+    dimensions
+    condition
+    by_phone
+    by_text
+
+
+urlpatterns = [
+    url(r'^$', LocationList.as_view(), name='list_locations'),
+    url(r'^post/$', ForSalePost.as_view() , name='post'),
+    url(r'^post/(?P<pk>\d+)/$', PostDetail.as_view(), name='bookmark_detail'),
+    url(r'')
+]

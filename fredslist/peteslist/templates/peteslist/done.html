@@ -1,0 +1,9 @@
+{% extends 'peteslist/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% for thing in form_data %}
+    <p>{{ thing }}</p>
+    {% endfor %}
+    <p>{{ form_data }}</p>
+
+{% endblock %}
