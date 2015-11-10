@@ -1,0 +1,12 @@
+{% extends 'peteslist/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <h2>{{ post.title }}</h2>
+
+    <p>{{ post.description }}</p>
+
+    {% for image in images %}
+        <p>FUCK<img src="{{ image.image.url }}"></p>
+    {% endfor %}
+
+{% endblock %}

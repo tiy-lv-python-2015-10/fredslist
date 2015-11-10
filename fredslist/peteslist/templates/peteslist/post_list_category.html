@@ -1,0 +1,17 @@
+{% extends 'peteslist/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <ul>
+    {% for post in post_list %}
+        <li>
+        {% for image in images %}
+            {% if image.post == post %}
+                <img src="{{ image.image.url }}">
+            {% endif %}
+        {% endfor %}
+        {{ post.title }}
+        </li>
+
+    {% endfor %}
+    </ul>
+{% endblock %}
