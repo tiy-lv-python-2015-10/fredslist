@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>fredslist</title>
+    <link rel = "stylesheet" type="test/css" href="{{ STATIC_URL }}css/style.css" media="screen" />
 </head>
 <body>
-
+  <div>
+    <h1>fredslist</h1>
+      {% for x in location_list %}
+          <p>{{ x.city }}, {{ x.state }}</p>
+      {% endfor %}
+  </div>
 </body>
 </html>
+
