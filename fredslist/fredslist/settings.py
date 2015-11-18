@@ -11,7 +11,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+#pip os
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Enable Persistent Connections
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mh5pfa!^!sl(v8h(g4tkeozy02x$ue)kv(8%x@8x2-12v#*8sj'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,12 +85,7 @@ WSGI_APPLICATION = 'fredslist.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+
 
 
 # Internationalization
@@ -110,3 +112,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/login/'
 #LOGIN_REDIRECT_URL = reverse_lazy('list_freds')
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
