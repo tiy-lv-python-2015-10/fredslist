@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -41,6 +42,8 @@ class Post(models.Model):
     phone = models.IntegerField(null=True, blank=True)
     price = models.DecimalField(max_digits=11, decimal_places=2, null=True, blank=True)
     location = models.ForeignKey(City)
+    favorited = models.ManyToManyField(User, through='Favorite', related_name='favorite_post')
+    posted_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return "{}".format(self.title)
@@ -49,3 +52,9 @@ class Post(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to="media/",null=True, blank=True)
     posting = models.ForeignKey(Post, related_name="images")
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User)
+    post = models.ForeignKey(Post)
+    favorited_at = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,10 @@
 from django.core.urlresolvers import reverse_lazy
+from django.db.models import Count
+from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, CreateView
 from posting.forms import PostForm
-from posting.models import City, Post, State
+from posting.models import City, Post, State, Favorite
 
 
 class ListCity(ListView):
@@ -20,3 +23,14 @@ class CreatePost(CreateView):
     form_class = PostForm
     success_url = reverse_lazy('list_post')
     template_name = 'posting/post_create.html'
+
+
+class ListPost(ListView):
+    model = Post
+    queryset = Post.objects.order_by('posted_at')
+
+
+class ListTop50(ListView):
+    queryset = Post.objects.annotate(favorite_count=Count('favorite')).order_by('-favorite_count')[:50]
+    model = Post
+    template_name = "posting/top50_list.html"

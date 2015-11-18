@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from posting.views import ListCity
+from django.views.decorators.cache import cache_page
+
+from posting.views import ListCity, CreatePost
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url('^', include('django.contrib.auth.urls')),
-    url(r'$^', ListCity.as_view(), name='list_city'),
+    url(r'$^', cache_page(60 * 15)(ListCity.as_view()), name='list_city'),
+    url(r'^create/$', CreatePost.as_view(), name='create_post'),
+    url(r'^api/', include('api.urls')),
 ]

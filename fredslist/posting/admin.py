@@ -1,5 +1,5 @@
 from django.contrib import admin
-from posting.models import Category, SubCategory, Post, City, State
+from posting.models import Category, SubCategory, Post, City, State, Favorite
 
 
 @admin.register(Category)
@@ -25,3 +25,7 @@ class StateAdmin(admin.ModelAdmin):
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
     list_display = ('name', 'state')
+
+@admin.register(Favorite)
+class FavoriteAdmin(admin.ModelAdmin):
+    list_display = ('user', 'post', 'favorited_at')

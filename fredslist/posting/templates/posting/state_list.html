@@ -1,3 +1,4 @@
+{#{% load cache %}#}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,7 @@
 <body>
     <h2>State List</h2>
     <ul>
+{#    {% cache 60*30 states %}#}
         {% for state in state %}
         <li>
             {{ state.name }}
@@ -21,6 +23,7 @@
             </ul>
         </li>
         {% endfor %}
+{#    {% endcache %}#}
     </ul>
 </body>
 </html>
